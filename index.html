@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
+	<title>Proyecto fin de carrera</title>
+	<link rel="stylesheet" href="css/base.css" />
+	<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+	<script type='text/javascript' src='lib/class.js'></script>
+	<script type='text/javascript' src='lib/rafpolyfill.js'></script>
+	<script type='text/javascript' src='lib/utiles.js'></script>
+</head>
+<body>
+	<div id="container">
+		<header>Mario Game <div id='fpsContainer'></div><br /><div id='debug'>Teclas: A: correr, Espacio o Flecha Arriba: salta, Flecha izq: Izquierda, Flecha derecha: derecha</div> </header>
+		<div id="viewport">
+		   
+		</div>
+		<footer></footer>
+	</div>
+
+
+	<div id="resources" style="display:none;">
+	    <img id="baldosas" src="img/baldosas32x32.png" />
+	    <img id="nocolisionable" src="img/no-colisionable.png" />
+		<img id="spritemario" src="img/mario-sprites.png" />
+	</div>
+	
+	<script type="text/javascript" src="js/DisplayObject.js"></script>
+	<script type="text/javascript" src="js/DisplayObjectContainer.js"></script>
+	<script type="text/javascript" src="js/Stage.js"></script>
+	<script type="text/javascript" src="js/Sprite.js"></script>
+	<script type="text/javascript" src="js/MovieClip.js"></script>
+	<script type="text/javascript" src="js/Heroe.js"></script>
+	<script type="text/javascript" src="js/Suelo.js"></script>
+	<script type="text/javascript" src="js/Decoracion.js"></script>
+	<script type="text/javascript" src="js/MarioGameEngine.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			var juego = new MarioGameEngine("mario", "div");
+			juego.cargarMundo("assets/mundo1.json");
+		});
+		
+		$(document).on('cargarMundo', function(evt, nombre) {
+			var juego = window.reflexion[nombre];
+			juego.cargarPersonajes();
+		});
+		
+		$(document).on('cargarPersonajes', function(evt, nombre) {
+			var juego = window.reflexion[nombre].start();
+		});
+	</script>
+</body>
+</html>
